@@ -3,6 +3,9 @@
 # if an attribute has these settings, they will be added to any
 # Ganglia output writter settings.
 valid_ganglia_settings = ['slope', 'units', 'tmax', 'dmax', 'sendMetadata']
+# if an attribute has these settings, they will be added to any
+# statsd output writter settings.
+valid_statsd_settings  = ['bucketType']
 -%>
 
 { "servers":
@@ -84,6 +87,11 @@ valid_ganglia_settings = ['slope', 'units', 'tmax', 'dmax', 'sendMetadata']
 <%       if object.has_key? 'typeNames' -%>
               , "typeNames": <%= object['typeNames'].inspect %>
 <%       end -%>
+<%       object['attrs'][attr_name].keys.select { |key| valid_statsd_settings.include? key }.sort.each do |key| -%>
+<%         value = object['attrs'][attr_name][key] -%>
+<%  # render each key: value pair.  If value is an integer, then render it without enclosing quotes. -%>
+              , "<%= key %>": <%= (value.to_i.to_s == value) ? value : "\"#{value}\"" %>
+<%       end # each key -%>
 <%       if @statsd_root_prefix -%>
               , "rootPrefix": "<%= @statsd_root_prefix %>"
 <%       end -%>
