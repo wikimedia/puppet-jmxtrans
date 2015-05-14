@@ -108,34 +108,34 @@ $jmx_kafka_objects = [
             'BytesOut'             => { 'units' => 'bytes',    'slope' => 'positive' },
             'FailedFetchRequest'   => { 'units' => 'requests', 'slope' => 'positive' },
             'FailedProduceRequest' => { 'units' => 'requests', 'slope' => 'positive' },
-            'MessagesIn'           => { 'units' => 'messages', 'slope' => 'positive' },
+            'MessagesIn'           => { 'units' => 'messages', 'slope' => 'positive' }
         }
     },
     {
         'name'   => 'kafka:type=kafka.LogFlushStats',
         'attrs'  => {
             'FlushesPerSecond' => { 'units' => 'flushes' }, # 'both' is ganglia default slope value. Leaving it off here.
-            'NumFlushes'       => { 'units' => 'flushes', slope => 'positive' },
+            'NumFlushes'       => { 'units' => 'flushes', 'slope' => 'positive' },
             'AvgFlushMs'       => { 'units' => 'ms' },
             'MaxFlushMs'       => { 'units' => 'ms' },
-            'TotalFlushMs'     => { 'units' => 'ms', 'slope' => 'positive' },
+            'TotalFlushMs'     => { 'units' => 'ms', 'slope' => 'positive' }
         }
     },
     {
         'name'   => 'kafka:type=kafka.SocketServerStats',
         'attrs'  => {
-            'BytesReadPerSecond'       => { 'units' => 'bytes'},
-            'BytesWrittenPerSecond'    => { 'units' => 'bytes'},
+            'BytesReadPerSecond'       => { 'units' => 'bytes' },
+            'BytesWrittenPerSecond'    => { 'units' => 'bytes' },
 
-            'ProduceRequestsPerSecond' => { 'units' => 'requests'},
-            'AvgProduceRequestMs'      => { 'units' => 'requests'},
-            'MaxProduceRequestMs'      => { 'units' => 'requests'},
-            'TotalProduceRequestMs'    => { 'units' => 'ms' }
+            'ProduceRequestsPerSecond' => { 'units' => 'requests' },
+            'AvgProduceRequestMs'      => { 'units' => 'requests' },
+            'MaxProduceRequestMs'      => { 'units' => 'requests' },
+            'TotalProduceRequestMs'    => { 'units' => 'ms' },
 
             'FetchRequestsPerSecond'   => { 'units' => 'requests' },
             'AvgFetchRequestMs'        => { 'units' => 'ms' },
             'MaxFetchRequestMs'        => { 'units' => 'ms' },
-            'TotalFetchRequestMs'      => { 'units' => 'ms' },
+            'TotalFetchRequestMs'      => { 'units' => 'ms' }
         }
     }
 
