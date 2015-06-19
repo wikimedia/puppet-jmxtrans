@@ -3,8 +3,7 @@
 A Puppet module for [jmxtrans](https://github.com/jmxtrans/jmxtrans).
 
 This module assumes that a 'jmxtrans' package is available for
-puppet to install.  You can build your own from the jmxtrans repository
-by running ```ant debian```.
+puppet to install.  You can download one from http://central.maven.org/maven2/org/jmxtrans/jmxtrans/.
 
 Use the ```jmxtrans::metrics``` define to install
 jmxtrans JSON query config files.  See the [jmxtrans wiki](https://github.com/jmxtrans/jmxtrans/wiki/Queries)

@@ -16,6 +16,12 @@ class jmxtrans(
         ensure  => 'installed',
     }
 
+    file { '/etc/jmxtrans':
+        ensure  => 'directory',
+        owner   => 'jmxtrans',
+        group   => 'jmxtrans',
+        require => Package['jmxtrans'],
+    }
     file { '/etc/default/jmxtrans':
         content => template('jmxtrans/jmxtrans.default.erb')
     }
