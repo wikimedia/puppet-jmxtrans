@@ -39,12 +39,13 @@ class jmxtrans(
     # propertly rotate files until we have a version
     # of jmxtrans where this is fixed.  Remove all jmxtrans
     # logs for now.  We don't really need these anyway.
-    # jmxtrans will function fine if its open log
-    # file is removed.
-    exec { 'jmxtrans-log-purge':
-        command => '/bin/rm /var/log/jmxtrans/*.log*',
-        user    => 'jmxtrans',
-        onlyif  => '/usr/bin/dpkg -s jmxtrans | grep -q "Version: 250"',
+    cron { 'jmxtrans-log-purge':
+        # This is so awful.  The version of jmxtrans we have now
+        # seems to not respond to 'service jmxtrans stop'.
+        command => '/usr/bin/dpkg -s jmxtrans | /bin/grep -q "Version: 250" && (/usr/bin/pkill -f "/usr/bin/java.+jmxtrans-all.jar" && sleep 6; /bin/rm -r /var/log/jmxtrans/*.log*; /usr/sbin/service jmxtrans start)',
+        minute  => 0,
+        hour    => 0,
+        user    => 'root',
         require => Service['jmxtrans'],
     }
 }
