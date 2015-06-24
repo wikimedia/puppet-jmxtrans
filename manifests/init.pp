@@ -32,4 +32,19 @@ class jmxtrans(
         require   => Package['jmxtrans'],
         subscribe => File['/etc/default/jmxtrans'],
     }
+
+    # TEMPORARY HACK.
+    # https://github.com/jmxtrans/jmxtrans/issues/215
+    # I cannot adjust log_level or configure log4j to
+    # propertly rotate files until we have a version
+    # of jmxtrans where this is fixed.  Remove all jmxtrans
+    # logs for now.  We don't really need these anyway.
+    # jmxtrans will function fine if its open log
+    # file is removed.
+    exec { 'jmxtrans-log-purge':
+        command => '/bin/rm /var/log/jmxtrans/*.log*',
+        user    => 'jmxtrans',
+        onlyif  => '/usr/bin/dpkg -s jmxtrans | grep -q "Version: 250"',
+        require => Service['jmxtrans'],
+    }
 }
