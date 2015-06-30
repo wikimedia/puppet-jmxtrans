@@ -1,7 +1,8 @@
-export LOG_DIR="/var/log/jmxtrans"
-export LOG_FILE="/var/log/jmxtrans/jmxtrans.log"
+LOG_DIR="/var/log/jmxtrans"
 SECONDS_BETWEEN_RUNS=<%= @run_interval %>
 JSON_DIR="/etc/jmxtrans"
-export HEAP_SIZE=512
+HEAP_SIZE=512
+NEW_SIZE=64
+CPU_CORES=$(cat /proc/cpuinfo | grep processor | wc -l)
+NEW_RATIO=8
 LOG_LEVEL=<%= @log_level %>
-export JAR_FILE=/usr/share/jmxtrans/lib/jmxtrans-all.jar
