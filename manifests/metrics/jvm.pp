@@ -22,6 +22,7 @@ define jmxtrans::metrics::jvm(
 )
 {
     jmxtrans::metrics { "${title}-jvm-metrics":
+        # lint:ignore:arrow_alignment
         jmx                  => $jmx,
         outfile              => $outfile,
         ganglia              => $ganglia,
@@ -90,6 +91,7 @@ define jmxtrans::metrics::jvm(
                     'Count'      => {'units' => 'buffers', 'slope' => 'both'},
                 }
             }
+        # lint:endignore
         ]
     }
 }
