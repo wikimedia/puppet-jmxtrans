@@ -40,36 +40,12 @@ define jmxtrans::metrics::jvm(
                     'NonHeapMemoryUsage' => {'units' => 'bytes', 'slope' => 'both'},
                 }
             },
-            # Parallel GC
+            # Garbage Collector metrics
             {
-                'name'        => 'java.lang:name=PS Scavenge,type=GarbageCollector',
-                'resultAlias' => 'garbage_collector_incremental',
-                'attrs'       => {
-                    'CollectionCount' => {'units' => 'GCs', 'slope' => 'both'},
-                    'CollectionTime'  => {'units' => 'milliseconds', 'slope' => 'positive'},
-                }
-            },
-            {
-                'name'        => 'java.lang:name=PS MarkSweep,type=GarbageCollector',
-                'resultAlias' => 'garbage_collector_full',
-                'attrs'       => {
-                    'CollectionCount' => {'units' => 'GCs', 'slope' => 'both'},
-                    'CollectionTime'  => {'units' => 'milliseconds', 'slope' => 'positive'},
-                }
-            },
-            # CMS GC
-            {
-                'name'        => 'java.lang:name=ParNew,type=GarbageCollector',
-                'resultAlias' => 'garbage_collector_incremental',
-                'attrs'       => {
-                    'CollectionCount' => {'units' => 'GCs', 'slope' => 'both'},
-                    'CollectionTime'  => {'units' => 'milliseconds', 'slope' => 'positive'},
-                }
-            },
-            {
-                'name'        => 'java.lang:name=ConcurrentMarkSweep,type=GarbageCollector',
-                'resultAlias' => 'garbage_collector_full',
-                'attrs'       => {
+                'name'         => 'java.lang:name=*,type=GarbageCollector',
+                'typeNames'    => ['name'],
+                'result_alias' => 'GarbageCollector',
+                'attrs'        => {
                     'CollectionCount' => {'units' => 'GCs', 'slope' => 'both'},
                     'CollectionTime'  => {'units' => 'milliseconds', 'slope' => 'positive'},
                 }
